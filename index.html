@@ -1,25 +1,129 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Values Compass v5 — Product Lookup</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Values Compass v6 — Scan and compare</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:dark;background:#101827;color:#e9eef8}*{box-sizing:border-box}body{margin:0}header{background:#172337;border-bottom:1px solid #34415a;padding:18px max(16px,calc((100vw - 1100px)/2))}h1{margin:0;font-size:26px}header p,.muted,small{color:#b1bfd1}main{max-width:1100px;margin:auto;padding:18px 14px 60px}.notice,.panel{border:1px solid #3c506c;border-radius:14px;padding:16px;margin:12px 0;background:#1b293e}.notice{border-color:#8e7446;background:#30291d;color:#f2dda9}.tabs,.toolbar,.legend{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}button,select,input,textarea{font:inherit}button{cursor:pointer;border:1px solid #526884;border-radius:9px;background:#263d5c;color:white;padding:10px 12px}button.active,button.primary{background:#376cb9}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #7db7ff}select,textarea,input[type=url]{background:#263953;color:white;border:1px solid #536782;border-radius:8px;padding:8px;max-width:100%}textarea{width:100%;min-height:60px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:740px){.grid{grid-template-columns:1fr}}h2{margin:0 0 12px;font-size:20px}h3{margin:8px 0;font-size:16px}.hidden{display:none}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.issue{padding:13px 0;border-bottom:1px solid #394a62}.pill{border-radius:99px;padding:4px 9px;font-size:12px;font-weight:700;display:inline-block;background:#35455c}.agree{background:#174b39;color:#91efc1}.oppose{background:#602b35;color:#ffadb7}.neutral{background:#3d4654;color:#e1e5eb}.unknown{background:#54442b;color:#ffdda0}.mixed{background:#4c376c;color:#e0c2ff}.bar{display:flex;height:13px;overflow:hidden;border-radius:6px;background:#33455f;margin:7px 0}.bar>div{height:100%}.radar{width:100%;max-width:440px;display:block;margin:auto}.slider{margin:10px 0}.slider input{width:100%;accent-color:#75adff}.company{border:1px solid #465c77;border-radius:10px;padding:12px;margin:10px 0}.evidence{border-left:3px solid #6587b4;padding:8px 12px;margin:9px 0;background:#21334b}.evidence a{color:#a9d1ff;overflow-wrap:anywhere}.metric{font-size:32px;font-weight:750}.dot{width:10px;height:10px;display:inline-block;border-radius:50%;margin-right:4px}label{font-weight:600}footer{text-align:center;color:#a6b6ca;font-size:12px;margin:25px}details{margin:10px 0}summary{cursor:pointer} .hint{font-size:12px;color:#c2ccdc}
 #products input{padding:10px;border:1px solid #61718a;border-radius:8px;background:#101827;color:#fff}#products .product-card{padding:13px;border:1px solid #435673;border-radius:12px;margin:10px 0;background:#18263a}#products .product-card img{max-width:100px;max-height:110px;object-fit:contain;float:right;margin-left:12px}#products .product-card:after{content:"";display:block;clear:both}#products .toolbar{align-items:end}#products button{cursor:pointer}#products a{overflow-wrap:anywhere}
-</style></head><body><header><h1>◈ Values Compass</h1><p>Product Lookup · Version 5</p></header><main><div class="notice"><strong>Research/test mode:</strong> Five real companies now have a primary-source research library, but are not assigned unsupported alignment ratings. The fictional examples are labeled DEMO. Any evidence you enter is user-entered and unverified until independently checked. Settings and research entries stay in this browser.</div><nav class="tabs"><button class="active" data-tab="compare">Comparison</button><button data-tab="products">Product lookup</button><button data-tab="research">Source library</button><button data-tab="evidence">Evidence editor</button><button data-tab="queue">Review queue</button><button data-tab="profile">My values</button><button data-tab="alternatives">Alternatives</button><button data-tab="method">Method</button></nav>
+#products a{color:#a9d1ff}
+#products button:disabled{cursor:default;opacity:.68}
+#products .barcode-field{flex:1 1 265px;min-width:0}
+#products input[type=text],#products input:not([type]){display:block;width:100%;margin-top:6px}
+#products #scanner{margin:14px 0;padding:12px;border:1px solid #526884;border-radius:10px}
+#products video{display:block;width:100%;max-width:560px;max-height:58vh;aspect-ratio:16/9;object-fit:contain;background:#101827;border-radius:8px}
+#products fieldset{border:1px solid #526884;border-radius:8px;margin:12px 0;min-width:0}
+#products .filter-options{display:flex;flex-wrap:wrap;gap:6px 16px}
+#products .filter-options label{padding:4px 0}
+#products table.nutrition{border-collapse:collapse;width:min(100%,380px);text-align:left}
+#products .nutrition caption{text-align:left;font-weight:700;margin-bottom:4px}
+#products .nutrition th,#products .nutrition td{border-bottom:1px solid #394a62;padding:5px 8px 5px 0}
+#products .product-card{overflow-wrap:anywhere}
+</style></head><body><header><h1>◈ Values Compass</h1><p>Scan and Compare · Version 6</p></header><main><div class="notice"><strong>Research/test mode:</strong> Five real companies now have a primary-source research library, but are not assigned unsupported alignment ratings. The fictional examples are labeled DEMO. Any evidence you enter is user-entered and unverified until independently checked. Settings and research entries stay in this browser.</div><nav class="tabs"><button class="active" data-tab="compare">Comparison</button><button data-tab="products">Product lookup</button><button data-tab="research">Source library</button><button data-tab="evidence">Evidence editor</button><button data-tab="queue">Review queue</button><button data-tab="profile">My values</button><button data-tab="alternatives">Alternatives</button><button data-tab="method">Method</button></nav>
 <section id="compare"><div class="grid"><div class="panel"><h2>Company comparison</h2><label>Company <select id="companyPick"></select></label><svg class="radar" id="radar" viewBox="0 0 420 420" aria-label="Issue alignment radar"></svg><p class="hint">Radar: green = documented agreement, red = opposition, purple = mixed, gray = neutral, ? = unknown. The shape is not a political-position spectrum.</p></div><div class="panel"><h2>Overview</h2><div id="summary"></div><h3>Issue-by-issue</h3><div id="breakdown"></div></div></div></section>
-<section id="products" class="hidden"><div class="panel"><h2>Find a product by barcode</h2><p class="muted">Enter the UPC/EAN number printed under a barcode. Product information is retrieved from the community-maintained Open Food Facts database when internet access is available. A product match is <strong>not</strong> proof of its parent company.</p><div class="toolbar"><label style="flex:1;min-width:200px">Barcode (8–14 digits)<input id="barcodeInput" inputmode="numeric" autocomplete="off" placeholder="e.g. 3017620422003" maxlength="18" style="display:block;width:100%;margin-top:6px"></label><button id="barcodeSearch">Look up product</button><button id="barcodeExample" type="button">Try example</button></div><p id="productStatus" role="status" aria-live="polite" class="hint">No lookup yet. The example button fills a barcode, then you can search.</p><div id="productResult"></div></div><div class="panel"><h2>Search products by name</h2><p class="muted">Search Open Food Facts by product or brand name. Results are community-contributed and may be incomplete or inaccurate.</p><div class="toolbar"><input id="productText" placeholder="Product or brand name" style="flex:1;min-width:180px"><button id="productTextSearch">Search products</button></div><div id="productMatches"></div></div><div class="panel"><h2>Save a product manually — works offline</h2><p class="muted">If the online lookup fails, enter the product details here. Ownership stays unverified until researched.</p><div class="grid"><label>Product name <input id="manualName" placeholder="e.g. Cheerios" autocomplete="off"></label><label>Brand <input id="manualBrand" placeholder="e.g. General Mills" autocomplete="off"></label></div><div class="grid"><label>Barcode (optional) <input id="manualCode" inputmode="numeric" placeholder="UPC or EAN"></label><label>Notes (optional) <input id="manualNotes" placeholder="Size, store, etc."></label></div><div class="toolbar"><button class="primary" id="manualSave" type="button">Save product offline</button></div><p id="manualStatus" role="status" class="hint"></p></div><div class="panel"><h2>Saved products</h2><p class="muted">Saved products (including manual entries) stay in this browser and are included in JSON exports. They are not uploaded to Values Compass.</p><div id="savedProducts"></div></div><div class="panel"><h2>About ownership and ratings</h2><p>Brand names in product listings are not a reliable substitute for verified corporate ownership. If ownership cannot be confirmed, Values Compass labels it <strong>Unverified</strong> and does not transfer a company's score to the product. Camera scanning will come later; it needs an HTTPS origin and compatible camera support.</p></div></section><section id="research" class="hidden"><div class="panel"><h2>Company source library</h2><p class="muted">Primary-source disclosures, checked November 7, 2026. These are <strong>research leads</strong>, not proof of agreement or opposition to your values. Political spending and general advocacy must be traced to a specific issue before an alignment rating is assigned.</p><label>Research company <select id="researchCompany"></select></label><div id="sourceCards"></div><p class="hint">Each source is a company statement or disclosure, not an independent audit. Source availability and later changes require rechecking. No automatic refresh is available in this offline version.</p></div></section><section id="evidence" class="hidden"><div class="panel"><h2>Research and evidence editor</h2><p class="muted">Add separate supporting and opposing evidence for the same issue. A company can be <strong>Mixed</strong> even when its net numerical impact is near zero. Neutral requires a researched neutrality basis; absence of research remains Unknown.</p><div class="toolbar"><label>Company <select id="editCompany"></select></label><label>Issue <select id="editIssue"></select></label></div><div id="editStatus"></div><p class="hint">For real companies, only findings you explicitly review contribute to the comparison. Drafts remain visible but do not count.</p><h3>Add a finding</h3><p class="hint"><strong>Real companies:</strong> New entries go directly to Review queue. <strong>DEMO:</strong> Entries remain in the demo and do not enter the review queue.</p><p class="hint">Entries you add are <strong>user assertions</strong> until reviewed. A link alone does not prove the asserted direction.</p><div class="grid"><label>Action type <select id="actionType"><option value="corporate-policy">Corporate policy or action</option><option value="corporate-lobbying">Corporate lobbying</option><option value="corporate-contribution">Corporate contribution</option><option value="employee-pac">Employee-funded PAC</option><option value="executive-personal">Executive personal activity</option><option value="independent-report">Independent investigation</option></select></label><label>Finding date <input id="findingDate" type="date"></label></div><div class="grid"><label>Direction <select id="direction"><option value="agree">Supports your position</option><option value="oppose">Opposes your position</option><option value="neutral">Verified neutrality</option></select></label><label>Strength of action <select id="strength"><option value="25">Limited (25)</option><option value="50">Moderate (50)</option><option value="75">Substantial (75)</option><option value="100">Very strong (100)</option></select></label></div><p><label>Evidence description<br><textarea id="description" placeholder="What did the company do? Attribute corporate, PAC, executive and employee actions separately."></textarea></label></p><p><label>Source link (optional in demo; required for verified research)<br><input id="source" type="text" inputmode="url" autocomplete="url" placeholder="example.com/article or paste a link" style="width:100%"></label></p><div class="toolbar"><button class="primary" id="addFinding">Add finding</button><button id="clearIssue">Clear findings for this issue</button></div><p class="hint">A source link is not automatically verified. Research mode requires checking source reliability, date, corporate attribution, and relevance before publishing a score.</p><h3>Reviewed findings and demo entries</h3><div id="findings"></div></div></section>
+<section id="products" class="hidden">
+  <div class="panel">
+    <h2>Find a product by barcode</h2>
+    <p class="muted">Scan a UPC or EAN barcode, or type the number under it. Your browser reads camera frames on this device. A lookup sends the barcode or product search term to Open Food Facts.</p>
+    <form id="barcodeForm" class="toolbar">
+      <label class="barcode-field">Barcode or Open Food Facts product link
+        <input id="barcodeInput" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="e.g. 3017620422003" maxlength="300">
+      </label>
+      <button class="primary" id="barcodeSearch" type="submit">Look up product</button>
+      <button id="scanStart" type="button">Scan with camera</button>
+      <button id="barcodeExample" type="button">Try example</button>
+    </form>
+    <div id="scanner" hidden>
+      <video id="scanVideo" autoplay muted playsinline aria-label="Live barcode scanner preview"></video>
+      <p class="hint">Hold the barcode steady in the center of the preview.</p>
+      <button id="scanStop" type="button">Stop camera</button>
+    </div>
+    <p id="scanStatus" role="status" class="hint"></p>
+    <p id="productStatus" role="status" class="hint">Use the camera or enter a barcode to get started.</p>
+    <div id="productResult"></div>
+  </div>
+  <div class="panel">
+    <h2>Search products by name</h2>
+    <p class="muted">Search Open Food Facts by product or brand name. You can paste a product link from their results into the barcode box above.</p>
+    <form id="productTextForm" class="toolbar">
+      <label class="barcode-field">Product or brand
+        <input id="productText" type="text" maxlength="100" autocomplete="off" placeholder="e.g. Nutella">
+      </label>
+      <button id="productTextSearch" type="submit">Search products</button>
+    </form>
+    <p id="productTextStatus" role="status" class="hint"></p>
+    <div id="productMatches"></div>
+  </div>
+  <div class="panel">
+    <h2>Save a product manually</h2>
+    <p class="muted">Use this form if a product is missing or you're offline.</p>
+    <form id="manualForm">
+      <div class="grid">
+        <label>Product name <input id="manualName" placeholder="e.g. Cheerios" autocomplete="off"></label>
+        <label>Brand <input id="manualBrand" placeholder="e.g. General Mills" autocomplete="off"></label>
+        <label>Barcode (optional) <input id="manualCode" inputmode="numeric" autocomplete="off" placeholder="UPC or EAN"></label>
+        <label>Notes (optional) <input id="manualNotes" placeholder="Size, store, etc."></label>
+      </div>
+      <div class="toolbar"><button class="primary" type="submit">Save product offline</button></div>
+    </form>
+    <p id="manualStatus" role="status" class="hint"></p>
+  </div>
+  <div class="panel">
+    <h2>Compare saved products</h2>
+    <p class="muted">Save products from a lookup to compare their nutrition, ingredients and labels here. Saved products stay in this browser and are included in JSON backups.</p>
+    <details id="productFilters">
+      <summary>Filter and sort products</summary>
+      <fieldset>
+        <legend>Require all selected labels</legend>
+        <div id="dietFilters" class="filter-options"></div>
+        <p class="hint">Uses labels recorded by Open Food Facts. Products with missing or unrecognized labels are excluded when a label filter is selected.</p>
+      </fieldset>
+      <fieldset>
+        <legend>Hide products with these allergens listed</legend>
+        <div id="allergenFilters" class="filter-options"></div>
+        <label><input id="includeUnknownAllergens" type="checkbox"> Include entries with no allergen or trace data</label>
+        <p class="hint"><strong>Check the package every time.</strong> Selecting an allergen hides products with that allergen or possible traces recorded. An entry can still be incomplete or out of date. <a href="https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/food-allergies" target="_blank" rel="noopener noreferrer">FDA food allergy guidance</a>.</p>
+      </fieldset>
+      <div class="grid">
+        <label>Made in <input id="madeInFilter" placeholder="e.g. Seattle or Washington" autocomplete="off" maxlength="100"></label>
+        <label>Ingredient contains <input id="ingredientFilter" placeholder="e.g. oats" autocomplete="off" maxlength="100"></label>
+      </div>
+      <p class="hint">Made in searches the reported manufacturing location. It does not use the store location, countries where the product is sold, or where its ingredients come from.</p>
+      <div class="toolbar">
+        <label>Sort by <select id="productSort">
+          <option value="saved">Most recently saved</option>
+          <option value="name">Product name</option>
+          <option value="sugars">Lowest sugars per 100 g/mL</option>
+          <option value="sodium">Lowest sodium per 100 g/mL</option>
+          <option value="proteins">Highest protein per 100 g/mL</option>
+          <option value="fiber">Highest fiber per 100 g/mL</option>
+          <option value="energy-kcal">Lowest calories per 100 g/mL</option>
+        </select></label>
+        <button id="clearProductFilters" type="button">Clear filters</button>
+      </div>
+      <p class="hint">Nutrition sorts put missing values last. Compare products of the same type. The database may report values by weight or volume.</p>
+    </details>
+    <p id="savedProductStatus" role="status" class="hint"></p>
+    <div id="savedProducts"></div>
+  </div>
+  <div class="panel">
+    <h2>About ownership and ratings</h2>
+    <p>Exact brand matches against a small list of company disclosures can suggest an owner to research. Every match stays <strong>Unverified</strong> for the individual product, and products stay unrated. Check the packaging and the source for the relevant market.</p>
+    <p class="hint">Product data from <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">Open Food Facts</a>. <a href="https://world.openfoodfacts.org/terms-of-use" target="_blank" rel="noopener noreferrer">Data and image licenses</a>.</p>
+  </div>
+</section>
+<section id="research" class="hidden"><div class="panel"><h2>Company source library</h2><p class="muted">Primary-source disclosures, checked November 7, 2026. These are <strong>research leads</strong>, not proof of agreement or opposition to your values. Political spending and general advocacy must be traced to a specific issue before an alignment rating is assigned.</p><label>Research company <select id="researchCompany"></select></label><div id="sourceCards"></div><p class="hint">Each source is a company statement or disclosure, not an independent audit. Source availability and later changes require rechecking. No automatic refresh is available in this offline version.</p></div></section><section id="evidence" class="hidden"><div class="panel"><h2>Research and evidence editor</h2><p class="muted">Add separate supporting and opposing evidence for the same issue. A company can be <strong>Mixed</strong> even when its net numerical impact is near zero. Neutral requires a researched neutrality basis; absence of research remains Unknown.</p><div class="toolbar"><label>Company <select id="editCompany"></select></label><label>Issue <select id="editIssue"></select></label></div><div id="editStatus"></div><p class="hint">For real companies, only findings you explicitly review contribute to the comparison. Drafts remain visible but do not count.</p><h3>Add a finding</h3><p class="hint"><strong>Real companies:</strong> New entries go directly to Review queue. <strong>DEMO:</strong> Entries remain in the demo and do not enter the review queue.</p><p class="hint">Entries you add are <strong>user assertions</strong> until reviewed. A link alone does not prove the asserted direction.</p><div class="grid"><label>Action type <select id="actionType"><option value="corporate-policy">Corporate policy or action</option><option value="corporate-lobbying">Corporate lobbying</option><option value="corporate-contribution">Corporate contribution</option><option value="employee-pac">Employee-funded PAC</option><option value="executive-personal">Executive personal activity</option><option value="independent-report">Independent investigation</option></select></label><label>Finding date <input id="findingDate" type="date"></label></div><div class="grid"><label>Direction <select id="direction"><option value="agree">Supports your position</option><option value="oppose">Opposes your position</option><option value="neutral">Verified neutrality</option></select></label><label>Strength of action <select id="strength"><option value="25">Limited (25)</option><option value="50">Moderate (50)</option><option value="75">Substantial (75)</option><option value="100">Very strong (100)</option></select></label></div><p><label>Evidence description<br><textarea id="description" placeholder="What did the company do? Attribute corporate, PAC, executive and employee actions separately."></textarea></label></p><p><label>Source link (optional in demo; required for verified research)<br><input id="source" type="text" inputmode="url" autocomplete="url" placeholder="example.com/article or paste a link" style="width:100%"></label></p><div class="toolbar"><button class="primary" id="addFinding">Add finding</button><button id="clearIssue">Clear findings for this issue</button></div><p class="hint">A source link is not automatically verified. Research mode requires checking source reliability, date, corporate attribution, and relevance before publishing a score.</p><h3>Reviewed findings and demo entries</h3><div id="findings"></div></div></section>
 <section id="queue" class="hidden"><div class="panel"><h2>Evidence review queue</h2><p class="muted">New real-company findings are drafts and appear here immediately. To include a real company's finding in the provisional score, open its source, check that it supports the stated action and attribution, and mark it <strong>Reviewed by me</strong>. This is your review, not independent fact-checking or certification.</p><div id="reviewQueue"></div></div></section><section id="profile" class="hidden"><div class="panel"><h2>Your values</h2><p class="muted">Imported automatically from v1 if saved in this browser. Importance and conviction affect scoring; they do not change the evidence.</p><div id="sliders"></div><h3>Shopping sensitivity</h3><div id="globalSliders"></div><div class="toolbar"><button id="export">Export settings and research</button><button id="importBtn">Import backup</button><input id="importFile" type="file" accept="application/json" hidden><button id="reset">Reset values and user evidence</button></div></div></section>
 <section id="alternatives" class="hidden"><div class="panel"><h2>Alternatives explorer</h2><p class="muted">Research candidates are not endorsements. A company with unknown evidence is never treated as neutral. Retail, software and banking are different categories and should not be compared as direct substitutes.</p><label>Category <select id="category"><option value="all">All categories (research view)</option><option value="retail">Retail</option><option value="technology">Technology</option><option value="finance">Finance</option><option value="demo">Demo companies</option></select></label><div id="companyList"></div></div></section>
-<section id="method" class="hidden"><div class="panel"><h2>Five distinct statuses</h2><p><span class="pill agree">Actively agrees</span> Verified supporting action without opposing action.</p><p><span class="pill oppose">Actively opposes</span> Verified opposing action without supporting action.</p><p><span class="pill mixed">Mixed</span> Both supporting and opposing actions, shown separately even when they cancel numerically.</p><p><span class="pill neutral">Neutral</span> Research-supported non-advocacy; not the same as no evidence.</p><p><span class="pill unknown">Unknown</span> No adequate evidence; excluded from the score and counted as missing coverage.</p><h3>Illustrative scoring</h3><p>For an issue, positive and negative findings are accumulated separately. Each finding's strength is weighted by your issue importance and conviction. The net impact is capped at ±100 per issue; <strong>Mixed</strong> remains visible regardless of net impact. Neutral has zero impact. Unknown has no score and lowers coverage. Overall alignment is shown only when at least half of weighted issue importance is covered; otherwise it is unrated.</p><p>These are provisional rules, not validated ethical metrics. The research editor does not independently authenticate source URLs or the contents of linked pages. User-reviewed entries are not independently verified company findings. Research sources now identify corporate vs PAC spending, but user-entered scores are not independently verified. Version 4 adds a user review workflow. It does not independently authenticate evidence or perform automated research; recency weighting, scale normalization, and independent corroboration remain future work.</p></div></section><footer>Values Compass v4.1 · Offline research workspace · Local browser storage · No automatic updates</footer></main><script>
+<section id="method" class="hidden"><div class="panel"><h2>Five distinct statuses</h2><p><span class="pill agree">Actively agrees</span> Verified supporting action without opposing action.</p><p><span class="pill oppose">Actively opposes</span> Verified opposing action without supporting action.</p><p><span class="pill mixed">Mixed</span> Both supporting and opposing actions, shown separately even when they cancel numerically.</p><p><span class="pill neutral">Neutral</span> Research-supported non-advocacy; not the same as no evidence.</p><p><span class="pill unknown">Unknown</span> No adequate evidence; excluded from the score and counted as missing coverage.</p><h3>Illustrative scoring</h3><p>For an issue, positive and negative findings are accumulated separately. Each finding's strength is weighted by your issue importance and conviction. The net impact is capped at ±100 per issue; <strong>Mixed</strong> remains visible regardless of net impact. Neutral has zero impact. Unknown has no score and lowers coverage. Overall alignment is shown only when at least half of weighted issue importance is covered; otherwise it is unrated.</p><p>These are provisional rules, not validated ethical metrics. The research editor does not independently authenticate source URLs or the contents of linked pages. User-reviewed entries are not independently verified company findings. Research sources now identify corporate vs PAC spending, but user-entered scores are not independently verified. Version 4 adds a user review workflow. It does not independently authenticate evidence or perform automated research; recency weighting, scale normalization, and independent corroboration remain future work.</p></div></section><footer>Values Compass v6 · Local settings and evidence · Product data from Open Food Facts</footer></main><script>
 const defaults=[
-{id:'secularGov',name:'Separation of religion and government',importance:100,conviction:100,position:'Strict separation of religion and government'},
-{id:'abortion',name:'Reproductive rights',importance:100,conviction:100,position:'Broad legal access to abortion'},
-{id:'lgbtq',name:'LGBTQ+ rights',importance:70,conviction:85,position:'Strong legal protections'},
-{id:'climate',name:'Environment and climate',importance:50,conviction:65,position:'Balance environmental protection and economic costs'},
-{id:'tax',name:'Tax and economic policy',importance:50,conviction:60,position:'Balance public services and private enterprise'},
-{id:'guns',name:'Gun regulation',importance:75,conviction:80,position:'Stronger firearm regulations'},
-{id:'immigration',name:'Immigration',importance:50,conviction:60,position:'Balance legal immigration with enforcement'},
-{id:'workers',name:'Workers and business',importance:50,conviction:60,position:'Balance worker protections and flexibility'},
-{id:'animals',name:'Animal welfare',importance:85,conviction:85,position:'Higher animal welfare standards'},
-{id:'equality',name:'Nondiscrimination',importance:85,conviction:90,position:'Judge documented treatment, not messaging'},
-{id:'privacy',name:'Privacy and consent',importance:90,conviction:95,position:'No sharing without meaningful consent'},
-{id:'religion',name:'Corporate religious neutrality',importance:90,conviction:90,position:'Prefer neutrality; bonus for secular advocacy'}];
+{id:'secularGov',name:'Separation of religion and government',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'abortion',name:'Reproductive rights',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'lgbtq',name:'LGBTQ+ rights',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'climate',name:'Environment and climate',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'tax',name:'Tax and economic policy',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'guns',name:'Gun regulation',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'immigration',name:'Immigration',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'workers',name:'Workers and business',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'animals',name:'Animal welfare',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'equality',name:'Nondiscrimination',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'privacy',name:'Privacy and consent',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'},
+{id:'religion',name:'Corporate religious neutrality',importance:50,conviction:50,position:'Set the evidence direction when recording a finding.'}];
 const companyDefs=[{name:'Costco',category:'retail',real:true},{name:'Amazon',category:'retail',real:true},{name:'Capital One',category:'finance',real:true},{name:'Microsoft',category:'technology',real:true},{name:'Walmart',category:'retail',real:true},{name:'Cedar Market (DEMO)',category:'demo',real:false},{name:'Fence Sitter (DEMO)',category:'demo',real:false},{name:'Quiet Company (DEMO)',category:'demo',real:false}];
 const sourceLibrary={
 'Costco':[{title:'Political contributions and nonpartisanship',url:'https://customerservice.costco.com/app/answers/detail/a_id/839/~/does-costco-wholesale-make-political-contributions-or-provide-other-political',date:'2023-08-28',type:'Company policy',note:'Costco says it does not take positions on social issues or donate company funds to political candidates or issues.',caution:'A stated general nonpartisanship policy does not establish verified neutrality on every specific issue.'},{title:'Election and policy advocacy spending policy (SEC exhibit)',url:'https://www.sec.gov/divisions/corpfin/cf-noaction/14a-8/2021/mcritchiecostco093021-14a8.pdf',date:'2021',type:'Policy document in SEC correspondence',note:'Policy prohibits candidate contributions and independent expenditures, including specified indirect routes.',caution:'Older policy; check for revisions and separate lobbying activity.'}],
@@ -28,7 +132,7 @@ const sourceLibrary={
 'Microsoft':[{title:'Public policy engagement',url:'https://www.microsoft.com/en-us/corporate-responsibility/public-policy-engagement',date:'Current portal',type:'Company policy',note:'Microsoft says it does not donate corporate funds to candidates; it separately describes its employee/shareholder-funded PAC.',caution:'Corporate political restrictions do not imply neutrality on all social or legislative issues.'},{title:'Policy and civic contributions',url:'https://www.microsoft.com/en-us/corporate-responsibility/topics/policy-contributions/',date:'2026 reporting available',type:'Disclosure archive',note:'Publishes corporate contributions and MSVPAC reports across multiple reporting periods.',caution:'Specific recipients and policy topics need individual analysis.'}],
 'Walmart':[{title:'Responsible engagement in public policy',url:'https://corporate.walmart.com/purpose/esgreport/responsible-engagement-in-public-policy',date:'2025 data',type:'Company ESG disclosure',note:'Walmart reports $7.84 million in federal lobbying in 2025; WALPAC is employee-funded and supported candidates of both major parties.',caution:'Bipartisan PAC giving is not automatically mixed on a particular value; recipient positions must be evaluated issue by issue.'},{title:'Walmart political contribution policies',url:'https://corporate.walmart.com/policies',date:'Current policy page',type:'Company policy',note:'Describes government-affairs approval, political giving and oversight.',caution:'Corporate lobbying, corporate giving, and employee PAC giving must be separately attributed.'}]};
 const demo={"Cedar Market (DEMO)":{secularGov:[{direction:'agree',strength:75,description:'Fictional advocacy for secular public institutions',source:''}],privacy:[{direction:'agree',strength:50,description:'Fictional opt-in privacy program',source:''}]},"Fence Sitter (DEMO)":{abortion:[{direction:'agree',strength:75,description:'Fictional funding supporting reproductive access',source:''},{direction:'oppose',strength:75,description:'Fictional funding supporting restrictions',source:''}],secularGov:[{direction:'oppose',strength:50,description:'Fictional religious legislative advocacy',source:''}]},"Quiet Company (DEMO)":{secularGov:[{direction:'neutral',strength:0,description:'Fictional verified non-advocacy policy and audited records',source:''}],abortion:[{direction:'neutral',strength:0,description:'Fictional verified neutrality',source:''}]}};
-function copy(x){return JSON.parse(JSON.stringify(x))}let prior={},saved={};try{prior=JSON.parse(localStorage.getItem('vc_v1')||'{}')}catch(e){}try{saved=JSON.parse(localStorage.getItem('vc_v2')||'{}')}catch(e){}let state={issues:defaults.map((d,i)=>({...d,importance:prior.issues?.[i]?.id===d.id?prior.issues[i].importance:d.importance,conviction:prior.issues?.[i]?.id===d.id?prior.issues[i].conviction:d.conviction})),sensitivity:prior.sensitivity??65,findings:copy(demo),...saved};function save(){try{localStorage.setItem('vc_v2',JSON.stringify(state))}catch(e){}}
+function copy(x){return JSON.parse(JSON.stringify(x))}let prior={},saved={};try{prior=JSON.parse(localStorage.getItem('vc_v1')||'{}')}catch(e){}try{saved=JSON.parse(localStorage.getItem('vc_v2')||'{}')}catch(e){}let state={issues:defaults.map((d,i)=>({...d,importance:prior.issues?.[i]?.id===d.id?prior.issues[i].importance:d.importance,conviction:prior.issues?.[i]?.id===d.id?prior.issues[i].conviction:d.conviction,position:prior.issues?.[i]?.id===d.id&&typeof prior.issues[i].position==='string'?prior.issues[i].position:d.position})),sensitivity:prior.sensitivity??65,findings:copy(demo),...saved};function save(){try{localStorage.setItem('vc_v2',JSON.stringify(state));return true}catch(e){return false}}
 const $=id=>document.getElementById(id);function el(tag,attrs={},txt){let e=document.createElement(tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(txt!==undefined)e.textContent=txt;return e}function svg(tag,attrs={}){return elNS(tag,attrs)}function elNS(tag,attrs){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));return e}
 function allItems(company,id){return state.findings?.[company]?.[id]||[]}
 function items(company,id){const list=allItems(company,id);return companyDefs.find(c=>c.name===company)?.real?list.filter(x=>x.reviewStatus==='user-reviewed'&&x.source):list}
@@ -51,32 +155,766 @@ function slider(label,val,cb){let d=el('div',{class:'slider'}),r=el('div',{class
 function renderAlternatives(){let root=$('companyList'),cat=$('category').value;root.replaceChildren();companyDefs.filter(c=>cat==='all'||c.category===cat).map(c=>({c,r:calc(c)})).sort((a,b)=>(b.r.score??-1)-(a.r.score??-1)).forEach(({c,r})=>{let d=el('div',{class:'company'});d.append(el('h3',{},c.name),el('p',{},r.category+' • '+(r.score===null?'Unrated':r.score+'/100')+' • Coverage '+Math.round(r.coverage*100)+'%'),el('small',{},c.real?'Research target, not a verified recommendation':'Fictional demonstration'));let b=el('button',{},'Compare');b.addEventListener('click',()=>{$('companyPick').value=c.name;switchTab('compare');renderResults()});d.append(el('p',{},''),b);root.append(d)})}
 function renderReviewQueue(){let root=$('reviewQueue');root.replaceChildren();let count=0;companyDefs.filter(c=>c.real).forEach(c=>{Object.entries(state.findings?.[c.name]||{}).forEach(([id,arr])=>arr.forEach((f,i)=>{if(f.reviewStatus==='user-reviewed')return;count++;let d=el('div',{class:'evidence'});d.append(el('strong',{},c.name+' · '+(state.issues.find(x=>x.id===id)?.name||id)),el('p',{},f.description),el('small',{},f.source?'Source supplied — review needed':'Missing source — cannot be reviewed'));if(f.source){let a=el('a',{href:f.source,target:'_blank',rel:'noopener noreferrer'},'Open source');d.append(el('p',{},''),a)}let b=el('button',{},'Mark reviewed');b.addEventListener('click',()=>{if(!f.source){alert('A source link is required before review. Delete and re-add this finding with a source.');return}if(!confirm('Have you checked the source supports this claim, date, issue, and attribution? This is your review, not independent verification.'))return;f.reviewStatus='user-reviewed';save();renderReviewQueue();renderEvidence();renderResults()});let remove=el('button',{},'Delete draft');remove.addEventListener('click',()=>{if(!confirm('Delete this draft?'))return;state.findings[c.name][id].splice(i,1);save();renderReviewQueue();renderEvidence();renderResults()});d.append(el('p',{},''),b,remove);root.append(d)}))});if(!count)root.append(el('p',{class:'muted'},'No pending findings for real companies. Add a finding in the evidence editor to begin.'))}
 function renderSources(){let c=$('researchCompany').value,root=$('sourceCards');root.replaceChildren();let sources=sourceLibrary[c]||[];if(!sources.length){root.append(el('p',{class:'muted'},'No primary-source research added for this company yet.'));return}sources.forEach(f=>{let d=el('div',{class:'evidence'});d.append(el('h3',{},f.title),el('small',{},f.type+' · '+f.date),el('p',{},f.note),el('p',{class:'hint'},'Caution: '+f.caution));let a=el('a',{href:f.url,target:'_blank',rel:'noopener noreferrer'},'Read original source');d.append(a);root.append(d)})}
-function switchTab(tab){document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!==tab));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab))}document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+function switchTab(tab){if(tab!=='products')stopScanner();document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!==tab));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab))}document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
 companyDefs.forEach(c=>{for(let id of ['companyPick','editCompany','researchCompany'])$(id).append(el('option',{value:c.name},c.name))});state.issues.forEach(x=>$('editIssue').append(el('option',{value:x.id},x.name)));$('researchCompany').value='Costco';$('researchCompany').addEventListener('change',renderSources);$('companyPick').value='Costco';$('editCompany').value='Costco';$('editIssue').value='abortion';renderSources();$('companyPick').addEventListener('change',renderResults);$('editCompany').addEventListener('change',renderEvidence);$('editIssue').addEventListener('change',renderEvidence);$('category').addEventListener('change',renderAlternatives);
 $('addFinding').addEventListener('click',()=>{let c=$('editCompany').value,id=$('editIssue').value,description=$('description').value.trim(),source=$('source').value.trim();if(!description){alert('Describe the evidence before adding it.');return}try{source=normalizeSourceLink(source)}catch(e){alert(e.message);return}let dir=$('direction').value,arr=state.findings[c]??={};arr[id]??=[];if(dir==='neutral'&&arr[id].some(x=>x.direction!=='neutral')||dir!=='neutral'&&arr[id].some(x=>x.direction==='neutral')){alert('Remove the neutrality finding before adding advocacy, or vice versa. Neutrality cannot coexist with documented advocacy.');return}arr[id].push({direction:dir,strength:dir==='neutral'?0:Number($('strength').value),description,source,actionType:$('actionType').value,date:$('findingDate').value,reviewStatus:'user-entered'});$('description').value='';$('source').value='';save();renderEvidence();renderResults();renderReviewQueue();if(companyDefs.find(x=>x.name===c)?.real){switchTab('queue');alert('Saved as a draft in the Review queue. It will not affect company ratings until you review it.')}else{alert('Saved to the fictional demo. Demo findings do not enter the real-company Review queue.')}});$('clearIssue').addEventListener('click',()=>{if(!confirm('Clear findings for this company and issue?'))return;let c=$('editCompany').value,id=$('editIssue').value;if(state.findings[c])delete state.findings[c][id];save();renderEvidence();renderResults();renderReviewQueue()});
-$('reset').addEventListener('click',()=>{if(!confirm('Reset values and ALL saved evidence entries?'))return;state={issues:copy(defaults),sensitivity:65,findings:copy(demo)};save();renderProfile();renderEvidence();renderResults();renderReviewQueue()});$('export').addEventListener('click',()=>{let a=el('a',{href:URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'})),download:'values-compass-v5-backup.json'});a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)});$('importBtn').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',async e=>{try{let v=JSON.parse(await e.target.files[0].text());if(!Array.isArray(v.issues)||v.issues.length!==defaults.length||!v.issues.every((x,i)=>x.id===defaults[i].id&&Number.isFinite(x.importance)&&x.importance>=0&&x.importance<=100&&Number.isFinite(x.conviction)&&x.conviction>=0&&x.conviction<=100)||!v.findings||typeof v.findings!=='object'||!Number.isFinite(v.sensitivity)||v.sensitivity<0||v.sensitivity>100)throw Error('Invalid backup');for(let company of Object.values(v.findings))for(let list of Object.values(company))if(!Array.isArray(list)||list.some(x=>!['agree','oppose','neutral'].includes(x.direction)||!Number.isFinite(x.strength)||x.strength<0||x.strength>100||typeof x.description!=='string'||typeof x.source!=='string'))throw Error('Invalid evidence');state={issues:v.issues,sensitivity:v.sensitivity,findings:v.findings};save();renderProfile();renderEvidence();renderResults();renderReviewQueue();alert('Backup imported')}catch(e){alert('Import failed: '+e.message)}e.target.value=''});renderProfile();renderEvidence();renderResults();renderReviewQueue();
+$('reset').addEventListener('click',()=>{if(!confirm('Reset values and ALL saved evidence entries?'))return;state={issues:copy(defaults),sensitivity:65,findings:copy(demo),savedProducts:state.savedProducts};save();renderProfile();renderEvidence();renderResults();renderReviewQueue()});$('export').addEventListener('click',()=>{let a=el('a',{href:URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'})),download:'values-compass-v6-backup.json'});a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)});$('importBtn').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change', async event => {
+  const input = event.target;
+  if (!input.files.length) return;
+  try {
+    const backup = JSON.parse(await input.files[0].text());
+    if (!Array.isArray(backup.issues) || backup.issues.length !== defaults.length ||
+        !backup.issues.every((issue, i) => issue?.id === defaults[i].id &&
+          [issue.importance, issue.conviction].every(value => Number.isFinite(value) && value >= 0 && value <= 100)) ||
+        !backup.findings || typeof backup.findings !== 'object' || Array.isArray(backup.findings) ||
+        !Number.isFinite(backup.sensitivity) || backup.sensitivity < 0 || backup.sensitivity > 100) {
+      throw Error('Invalid settings or evidence');
+    }
+    for (const company of Object.values(backup.findings)) {
+      if (!company || typeof company !== 'object' || Array.isArray(company)) throw Error('Invalid evidence');
+      for (const list of Object.values(company)) {
+        if (!Array.isArray(list) || list.some(finding => !finding ||
+          !['agree','oppose','neutral'].includes(finding.direction) ||
+          !Number.isFinite(finding.strength) || finding.strength < 0 || finding.strength > 100 ||
+          typeof finding.description !== 'string' || typeof finding.source !== 'string')) throw Error('Invalid evidence');
+        for (const finding of list) {
+          if (finding.source && !/^https?:\/\//i.test(finding.source)) throw Error('Invalid evidence link');
+        }
+      }
+    }
+    const previous = state;
+    state = {
+      issues:backup.issues,
+      sensitivity:backup.sensitivity,
+      findings:backup.findings,
+      savedProducts:backupProducts(backup.savedProducts)
+    };
+    if (!save()) {
+      state = previous;
+      throw Error('This browser could not write to local storage');
+    }
+    renderProfile();
+    renderEvidence();
+    renderResults();
+    renderReviewQueue();
+    renderSavedProducts();
+    alert('Backup imported');
+  } catch (error) {
+    alert('Import failed: ' + error.message);
+  } finally {
+    input.value = '';
+  }
+});
+renderProfile();
+renderEvidence();
+renderResults();
+renderReviewQueue();
 
-// V5 product lookup. No secret keys, no paid services, no ownership inference.
-state.savedProducts=Array.isArray(state.savedProducts)?state.savedProducts:[];
-const PRODUCT_API='https://world.openfoodfacts.org';
-function productText(value){return String(value??'').trim()}
-function validBarcode(raw){const code=productText(raw).replace(/[\s-]/g,'');if(!/^\d{8,14}$/.test(code))throw Error('Enter a barcode containing 8 to 14 digits.');return code}
-function productName(p){return productText(p.product_name)||productText(p.product_name_en)||'Unnamed product'}
-function productBrand(p){return productText(p.brands)||'Brand not supplied'}
-function productImage(p){const url=productText(p.image_front_small_url||p.image_small_url);return /^https:\/\//i.test(url)?url:null}
-function safeProduct(p){return {code:productText(p.code),name:productName(p),brand:productBrand(p),quantity:productText(p.quantity),image:productImage(p),source:'Open Food Facts',savedAt:new Date().toISOString()}}
-function showProductMessage(msg){$('productStatus').textContent=msg}
-function productCard(p,saveButton=true){const card=el('div',{class:'product-card'});if(p.image){const img=el('img',{src:p.image,alt:'Product packaging'});img.referrerPolicy='no-referrer';card.append(img)}card.append(el('h3',{},p.name),el('p',{},'Brand listed: '+p.brand),el('p',{},(p.manual?(p.barcode?'Barcode: '+p.barcode:'Manual entry (no barcode)'):'Barcode: '+p.code)+(p.quantity?' · '+p.quantity:'')),el('p',{class:'hint'},'Parent company: Unverified · Values alignment: Not rated'));if(!p.manual){const source=el('a',{href:'https://world.openfoodfacts.org/product/'+encodeURIComponent(p.code),target:'_blank',rel:'noopener noreferrer'},'View community product record');card.append(source)}if(saveButton){const b=el('button',{},state.savedProducts.some(x=>x.code===p.code)?'Saved':'Save product');b.disabled=state.savedProducts.some(x=>x.code===p.code);b.addEventListener('click',()=>{if(!state.savedProducts.some(x=>x.code===p.code)){state.savedProducts.push(p);save();renderSavedProducts();b.disabled=true;b.textContent='Saved'}});card.append(el('p',{},''),b)}return card}
-function renderSavedProducts(){const root=$('savedProducts');root.replaceChildren();if(!state.savedProducts.length){root.append(el('p',{class:'muted'},'No products saved yet.'));return}state.savedProducts.forEach((p,i)=>{const card=productCard(p,false),b=el('button',{},'Remove saved product');b.addEventListener('click',()=>{state.savedProducts.splice(i,1);save();renderSavedProducts()});card.append(el('p',{},''),b);root.append(card)})}
-async function getJson(url){const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),12000);try{const res=await fetch(url,{signal:ctl.signal,headers:{Accept:'application/json'}});if(!res.ok)throw Error('Product service returned HTTP '+res.status);return await res.json()}finally{clearTimeout(timer)}}
-async function lookupBarcode(){let code;try{code=validBarcode($('barcodeInput').value)}catch(e){showProductMessage(e.message);return}const btn=$('barcodeSearch');btn.disabled=true;$('productResult').replaceChildren();showProductMessage('Looking up '+code+'…');try{const data=await getJson(PRODUCT_API+'/api/v2/product/'+encodeURIComponent(code)+'.json?fields=code,product_name,product_name_en,brands,quantity,image_front_small_url,image_small_url');if(data.status!==1||!data.product){showProductMessage('No matching product found. Try product-name search or another barcode.');return}const p=safeProduct({...data.product,code});$('productResult').append(productCard(p));showProductMessage('Product found. Brand and ownership details require verification.')}catch(e){showProductMessage('Could not reach the free product database. Check your connection or browser restrictions and try again. '+(e.name==='AbortError'?'The request timed out.':''))}finally{btn.disabled=false}}
-async function lookupText(){const q=productText($('productText').value);if(q.length<2){$('productMatches').replaceChildren(el('p',{},'Enter at least two characters.'));return}const btn=$('productTextSearch'),root=$('productMatches');btn.disabled=true;root.replaceChildren(el('p',{class:'muted'},'Searching…'));try{const data=await getJson(PRODUCT_API+'/cgi/search.pl?search_terms='+encodeURIComponent(q)+'&search_simple=1&action=process&json=1&page_size=12&fields=code,product_name,product_name_en,brands,quantity,image_front_small_url,image_small_url');root.replaceChildren();let found=0;for(const raw of data.products||[]){if(!/^\d{8,14}$/.test(productText(raw.code)))continue;root.append(productCard(safeProduct(raw)));found++}if(!found)root.append(el('p',{},'No matching products found. Try a different term.'))}catch(e){root.replaceChildren(el('p',{},'Product search unavailable right now. Check your connection and try again.'))}finally{btn.disabled=false}}
-function saveManualProduct(){const name=productText($('manualName').value),brand=productText($('manualBrand').value),raw=productText($('manualCode').value),notes=productText($('manualNotes').value);if(!name){$('manualStatus').textContent='Enter a product name to save.';return}let code='';if(raw){try{code=validBarcode(raw)}catch(e){$('manualStatus').textContent=e.message;return}}const id=code||'manual-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);if(code&&state.savedProducts.some(p=>p.code===code)){$('manualStatus').textContent='This barcode is already in Saved products.';return}state.savedProducts.push({code:id,name,brand:brand||'Brand not supplied',quantity:notes,image:null,source:'Manual entry — unverified',savedAt:new Date().toISOString(),manual:true,barcode:code});save();renderSavedProducts();$('manualStatus').textContent='Saved locally. Ownership and alignment remain unverified.';$('manualName').value='';$('manualBrand').value='';$('manualCode').value='';$('manualNotes').value=''}
-$('manualSave').addEventListener('click',saveManualProduct);
-$('barcodeSearch').addEventListener('click',lookupBarcode);
-$('barcodeInput').addEventListener('keydown',e=>{if(e.key==='Enter')lookupBarcode()});
-$('barcodeExample').addEventListener('click',()=>{$('barcodeInput').value='3017620422003';showProductMessage('Example barcode filled in. Select Look up product to fetch current data.')});
-$('productTextSearch').addEventListener('click',lookupText);
-$('productText').addEventListener('keydown',e=>{if(e.key==='Enter')lookupText()});
+// Product data comes from Open Food Facts. Saved records and research are local.
+const OFF = 'https://world.openfoodfacts.org';
+const PRODUCT_FIELDS = [
+  'code', 'product_name', 'product_name_en', 'brands', 'quantity',
+  'image_front_small_url', 'image_small_url', 'ingredients_text', 'ingredients_text_en',
+  'allergens_tags', 'traces_tags', 'labels_tags', 'manufacturing_places', 'origins',
+  'nutriments'
+].join(',');
+const BRAND_LEADS = new Map([
+  ['kirkland signature', {company:'Costco', scope:'U.S. brand disclosure', url:'https://www.costco.com/kirkland-signature.html'}],
+  ['great value', {company:'Walmart', scope:'U.S. brand disclosure', url:'https://corporate.walmart.com/news/2026/04/15/walmart-unveils-modern-redesign-of-great-value-its-flagship-private-brand'}],
+  ['nutella', {company:'Ferrero Group', scope:'U.S. brand disclosure', url:'https://www.ferrero.com/us/en/our-brands/nutella'}]
+]);
+BRAND_LEADS.set('ferrero', BRAND_LEADS.get('nutella'));
+
+const DIET_LABELS = [
+  ['Vegan', ['en:vegan']],
+  ['Vegetarian', ['en:vegetarian', 'en:vegan']],
+  ['Gluten-free', ['en:no-gluten', 'en:gluten-free', 'en:certified-gluten-free']],
+  ['Non-GMO', ['en:no-gmos', 'en:non-gmo', 'en:non-gmo-project']],
+  ['Organic', ['en:organic']],
+  ['Halal', ['en:halal']],
+  ['Kosher', ['en:kosher']]
+];
+const ALLERGENS = [
+  ['Milk', ['en:milk']], ['Eggs', ['en:eggs']], ['Fish', ['en:fish']],
+  ['Crustaceans / shellfish', ['en:crustaceans', 'en:molluscs']],
+  ['Tree nuts', ['en:nuts']], ['Peanuts', ['en:peanuts']], ['Wheat / gluten', ['en:gluten', 'en:wheat']],
+  ['Soy', ['en:soybeans']], ['Sesame', ['en:sesame-seeds']],
+  ['Mustard', ['en:mustard']], ['Celery', ['en:celery']], ['Lupin', ['en:lupin']],
+  ['Sulphites', ['en:sulphur-dioxide-and-sulphites']]
+];
+const NUTRIENTS = [
+  ['energy-kcal', 'Energy', 'kcal'], ['fat', 'Fat', 'g'], ['saturated-fat', 'Saturated fat', 'g'],
+  ['carbohydrates', 'Carbohydrates', 'g'], ['sugars', 'Sugars', 'g'],
+  ['fiber', 'Fiber', 'g'], ['proteins', 'Protein', 'g'], ['sodium', 'Sodium', 'mg']
+];
+const recentBarcodes = new Map();
+let barcodeRequest;
+let scanSession;
+let scannerLibrary;
+
+function textValue(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function plainText(value) {
+  return textValue(value).normalize('NFKC').toLowerCase();
+}
+
+function cleanBarcode(raw) {
+  const code = textValue(raw).replace(/[\s-]/g, '');
+  if (!/^\d{8,14}$/.test(code)) throw Error('Enter the 8 to 14 digits printed under the barcode.');
+  return code;
+}
+
+function barcodeInputValue(raw) {
+  const value = textValue(raw);
+  if (/^https?:\/\//i.test(value)) {
+    const link = new URL(value);
+    const match = link.pathname.match(/^\/product\/(\d{8,14})(?:\/|$)/);
+    if (/(^|\.)openfoodfacts\.org$/.test(link.hostname) && match) return match[1];
+    throw Error('Paste an Open Food Facts product link or enter the barcode digits.');
+  }
+  return cleanBarcode(value);
+}
+
+function barcodeKey(code) {
+  const trimmed = code.replace(/^0+/, '');
+  return trimmed.padStart(trimmed.length <= 8 ? 8 : 13, '0');
+}
+
+function hasCheckDigit(code) {
+  const digits = [...code].reverse().map(Number);
+  return digits.reduce((sum, digit, i) => sum + digit * (i % 2 ? 3 : 1), 0) % 10 === 0;
+}
+
+function expandUpce(code) {
+  if (!/^[01]\d{7}$/.test(code)) return '';
+  const [prefix,a,b,c,d,e,mode,check] = code;
+  let body;
+  switch (mode) {
+    case '0': case '1': case '2': body = a+b+mode+'0000'+c+d+e; break;
+    case '3': body = a+b+c+'00000'+d+e; break;
+    case '4': body = a+b+c+d+'00000'+e; break;
+    default: body = a+b+c+d+e+'0000'+mode;
+  }
+  const expanded = prefix + body + check;
+  return hasCheckDigit(expanded) ? expanded : '';
+}
+
+function productImage(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === 'https:' && ['images.openfoodfacts.org', 'static.openfoodfacts.org'].includes(url.hostname) &&
+        !url.username && !url.password && !url.port && url.pathname.startsWith('/images/products/')) return url.href;
+  } catch {}
+  return null;
+}
+
+function stringList(value) {
+  return Array.isArray(value) ? value.filter(item => typeof item === 'string').slice(0, 120) : [];
+}
+
+function productDetails(raw) {
+  const nutrition = {};
+  for (const [id] of NUTRIENTS) {
+    const value = raw.nutriments?.[id + '_100g'];
+    if (Number.isFinite(value) && value >= 0) nutrition[id] = value;
+  }
+  return {
+    ingredients: (textValue(raw.ingredients_text_en) || textValue(raw.ingredients_text)).slice(0, 12000),
+    allergens: stringList(raw.allergens_tags),
+    traces: stringList(raw.traces_tags),
+    labels: stringList(raw.labels_tags),
+    madeIn: textValue(raw.manufacturing_places).slice(0, 500),
+    origins: textValue(raw.origins).slice(0, 500),
+    nutrition
+  };
+}
+
+function safeProduct(raw, code) {
+  return {
+    code,
+    name: textValue(raw.product_name_en) || textValue(raw.product_name) || 'Unnamed product',
+    brand: Array.isArray(raw.brands) ? stringList(raw.brands).join(', ') : textValue(raw.brands) || 'Brand not supplied',
+    quantity: textValue(raw.quantity),
+    image: productImage(raw.image_front_small_url || raw.image_small_url),
+    source: 'Open Food Facts',
+    details: productDetails(raw),
+    savedAt: new Date().toISOString()
+  };
+}
+
+function ownershipLead(brand) {
+  const names = plainText(brand).split(',').map(textValue).filter(Boolean);
+  const lead = BRAND_LEADS.get(names[0]);
+  return lead && names.every(name => BRAND_LEADS.get(name) === lead) ? lead : null;
+}
+
+function outbound(url, label) {
+  return el('a', {href:url, target:'_blank', rel:'noopener noreferrer'}, label);
+}
+
+function nutritionValue(details, id) {
+  const value = details?.nutrition?.[id];
+  return Number.isFinite(value) && value >= 0 ? value : null;
+}
+
+function nutritionDisplay(id, value, unit) {
+  if (value === null) return 'Not recorded';
+  return new Intl.NumberFormat(undefined, {maximumSignificantDigits:4}).format(id === 'sodium' ? value * 1000 : value) + ' ' + unit;
+}
+
+function tagNames(tags) {
+  return stringList(tags).map(tag => tag.replace(/^[a-z]{2}:/, '').replaceAll('-', ' ')).join(', ') || 'Not recorded';
+}
+
+function detailsPanel(product) {
+  const data = product.details;
+  if (!data) return el('p', {class:'hint'}, 'Nutrition and ingredients are not saved for this entry. Look up the barcode to see available data.');
+  const section = el('details');
+  section.append(el('summary', {}, 'Nutrition, ingredients and labels'));
+  const table = el('table', {class:'nutrition'});
+  table.append(el('caption', {}, 'Reported per 100 g/mL'));
+  const body = el('tbody');
+  for (const [id, label, unit] of NUTRIENTS) {
+    const row = el('tr');
+    row.append(el('th', {scope:'row'}, label), el('td', {}, nutritionDisplay(id, nutritionValue(data, id), unit)));
+    body.append(row);
+  }
+  table.append(body);
+  section.append(
+    el('p', {}, 'Ingredients: ' + (textValue(data.ingredients) || 'Not recorded')),
+    el('p', {}, 'Listed allergens: ' + tagNames(data.allergens)),
+    el('p', {}, 'Listed possible traces: ' + tagNames(data.traces)),
+    el('p', {class:'hint'}, 'Allergy information may be incomplete. Check the current package.'),
+    el('p', {}, 'Labels: ' + tagNames(data.labels)),
+    el('p', {}, 'Manufactured in: ' + (textValue(data.madeIn) || 'Not recorded')),
+    el('p', {}, 'Ingredient origins: ' + (textValue(data.origins) || 'Not recorded')),
+    table
+  );
+  return section;
+}
+
+function savedCode(product) {
+  const code = product.manual ? textValue(product.barcode) : textValue(product.code);
+  return /^\d{8,14}$/.test(code) ? barcodeKey(code) : textValue(product.code);
+}
+
+function findSavedProduct(code) {
+  return state.savedProducts.find(product => savedCode(product) === code);
+}
+
+function updateSaveButtons() {
+  document.querySelectorAll('[data-save-code]').forEach(button => {
+    const product = findSavedProduct(button.dataset.saveCode);
+    const canRefresh = product && button.dataset.refreshed !== 'true';
+    button.disabled = Boolean(product && !canRefresh);
+    button.textContent = canRefresh ? 'Update saved product details' : product ? 'Saved' : 'Save product';
+  });
+}
+
+function storeProducts(products) {
+  const previous = state.savedProducts;
+  state.savedProducts = products;
+  if (save()) {
+    renderSavedProducts();
+    return true;
+  }
+  state.savedProducts = previous;
+  $('savedProductStatus').textContent = 'This browser could not write to local storage. Your saved products have not changed.';
+  return false;
+}
+
+function productCard(product, allowSave = false) {
+  const card = el('article', {class:'product-card'});
+  const image = productImage(product.image);
+  if (image) card.append(el('img', {src:image, alt:'Product packaging from Open Food Facts', loading:'lazy', referrerpolicy:'no-referrer'}));
+  const code = product.manual ? textValue(product.barcode) : textValue(product.code);
+  card.append(
+    el('h3', {}, product.name),
+    el('p', {}, 'Brand listed: ' + (product.brand || 'Brand not supplied')),
+    el('p', {}, code ? 'Barcode: ' + code : 'Manual entry without barcode')
+  );
+  if (product.quantity) card.append(el('p', {}, (product.manual ? 'Notes: ' : 'Quantity: ') + product.quantity));
+  card.append(el('p', {class:'hint'}, 'Parent company: Unverified · Values alignment: Not rated'));
+  const lead = ownershipLead(product.brand);
+  if (lead) {
+    const owner = el('p', {class:'hint'}, 'Possible brand owner: ' + lead.company + ' (' + lead.scope + '). ');
+    owner.append(outbound(lead.url, 'Check company source'));
+    card.append(owner);
+    if (companyDefs.some(company => company.name === lead.company && company.real)) {
+      const compare = el('button', {type:'button'}, 'Open company comparison');
+      compare.addEventListener('click', () => {
+        $('companyPick').value = lead.company;
+        switchTab('compare');
+        renderResults();
+      });
+      card.append(compare);
+    }
+  }
+  if (!product.manual && /^\d{8,14}$/.test(code)) {
+    const source = el('p');
+    source.append(outbound(OFF + '/product/' + code, 'View Open Food Facts record'));
+    card.append(source);
+  } else if (product.details) {
+    card.append(el('p', {class:'hint'}, 'Product details from Open Food Facts'));
+  }
+  card.append(detailsPanel(product));
+  if (allowSave) {
+    const key = savedCode(product);
+    const button = el('button', {type:'button', 'data-save-code':key}, 'Save product');
+    const feedback = el('p', {class:'hint', role:'status'});
+    button.addEventListener('click', () => {
+      const existing = findSavedProduct(key);
+      const next = [...state.savedProducts];
+      if (existing) {
+        next[next.indexOf(existing)] = existing.manual ? {...existing, details:product.details} : {...product, savedAt:existing.savedAt};
+      } else {
+        next.push({...product, savedAt:new Date().toISOString()});
+      }
+      if (storeProducts(next)) {
+        button.dataset.refreshed = 'true';
+        feedback.textContent = existing ? 'Saved details updated.' : 'Product saved on this device.';
+        updateSaveButtons();
+      } else {
+        feedback.textContent = 'Could not save to this browser.';
+      }
+    });
+    card.append(button, feedback);
+  }
+  return card;
+}
+
+function renderFilterChoices(root, choices) {
+  choices.forEach(([name], index) => {
+    const label = el('label');
+    label.append(el('input', {type:'checkbox', value:index}), document.createTextNode(' ' + name));
+    $(root).append(label);
+  });
+}
+
+function selectedFilters(root, choices) {
+  return Array.from($(root).querySelectorAll('input:checked'), input => choices[input.value][1]);
+}
+
+function renderSavedProducts() {
+  const root = $('savedProducts');
+  root.replaceChildren();
+  const diets = selectedFilters('dietFilters', DIET_LABELS);
+  const allergens = selectedFilters('allergenFilters', ALLERGENS).flat();
+  const includeUnknown = $('includeUnknownAllergens').checked;
+  const place = plainText($('madeInFilter').value);
+  const ingredient = plainText($('ingredientFilter').value);
+  const sort = $('productSort').value;
+  const sortNutrient = NUTRIENTS.find(([id]) => id === sort);
+  const products = [...state.savedProducts].reverse().filter(({details}) => {
+    if (diets.some(options => !options.some(tag => details?.labels?.includes(tag)))) return false;
+    if (allergens.length) {
+      const reported = [...(details?.allergens || []), ...(details?.traces || [])];
+      if ((!includeUnknown && !reported.length) || allergens.some(tag => reported.includes(tag))) return false;
+    }
+    return plainText(details?.madeIn).includes(place) && plainText(details?.ingredients).includes(ingredient);
+  });
+  if (sort === 'name') {
+    products.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortNutrient) {
+    const order = ['proteins','fiber'].includes(sort) ? -1 : 1;
+    products.sort((a, b) => {
+      const left = nutritionValue(a.details, sort);
+      const right = nutritionValue(b.details, sort);
+      if (left === null) return right === null ? 0 : 1;
+      if (right === null) return -1;
+      return order * (left - right);
+    });
+  }
+  $('savedProductStatus').textContent = products.length + ' of ' + state.savedProducts.length + ' saved products shown.' +
+    (allergens.length ? ' Check the package for allergen and cross-contact information.' : '');
+  if (!products.length) {
+    root.append(el('p', {class:'muted'}, state.savedProducts.length ? 'No saved products match these filters.' : 'No products saved yet.'));
+  }
+  products.forEach(product => {
+    const card = productCard(product);
+    if (sortNutrient) {
+      const [id, label, unit] = sortNutrient;
+      const value = nutritionDisplay(id, nutritionValue(product.details, id), unit);
+      card.querySelector('h3').after(el('p', {class:'hint'}, label + ' per 100 g/mL: ' + value));
+    }
+    if (allergens.length) {
+      const {allergens:listed, traces} = product.details || {};
+      if (!listed?.length && !traces?.length) {
+        card.querySelector('h3').after(el('p', {class:'hint'}, 'No allergen or trace data recorded.'));
+      }
+    }
+    const code = product.manual ? product.barcode : product.code;
+    if (!product.details && /^\d{8,14}$/.test(code)) {
+      const refresh = el('button', {type:'button'}, 'Look up product details');
+      refresh.addEventListener('click', () => {
+        $('barcodeInput').value = code;
+        $('barcodeInput').scrollIntoView({block:'center'});
+        lookupBarcode(code);
+      });
+      card.append(refresh);
+    }
+    const remove = el('button', {type:'button'}, 'Remove saved product');
+    remove.addEventListener('click', () => {
+      storeProducts(state.savedProducts.filter(item => item !== product));
+    });
+    card.append(remove);
+    root.append(card);
+  });
+  updateSaveButtons();
+}
+
+async function getOffJson(url, controller) {
+  const timer = setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(url, {
+      signal:controller.signal, credentials:'omit', referrerPolicy:'no-referrer',
+      headers:{Accept:'application/json', 'X-User-Agent':'ValuesCompass/6.0 (https://imdennismiller-png.github.io/values-compass./)'}
+    });
+    if (response.status === 404) return null;
+    if (!response.ok) throw Error(response.status === 429
+      ? 'Open Food Facts is limiting requests. Wait a minute and try again.'
+      : 'Open Food Facts is temporarily unavailable. Try again or save the product manually.');
+    return await response.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function clearBarcodeLookup() {
+  barcodeRequest?.abort();
+  barcodeRequest = null;
+  $('barcodeSearch').disabled = false;
+  $('productResult').replaceChildren();
+}
+
+async function lookupBarcode(override) {
+  let code;
+  try {
+    code = override || barcodeInputValue($('barcodeInput').value);
+  } catch (error) {
+    $('productStatus').textContent = error.message;
+    return;
+  }
+  stopScanner();
+  clearBarcodeLookup();
+  const key = barcodeKey(code);
+  const controller = new AbortController();
+  barcodeRequest = controller;
+  $('barcodeSearch').disabled = true;
+  $('productStatus').textContent = 'Looking up ' + code + '…';
+  const result = $('productResult');
+  try {
+    let entry = recentBarcodes.get(key);
+    if (!entry || entry.expires < Date.now()) {
+      const url = OFF + '/api/v3/product/' + code + '.json?' + new URLSearchParams({fields:PRODUCT_FIELDS});
+      const data = await getOffJson(url, controller);
+      if (barcodeRequest !== controller) return;
+      if (data && data.result?.id !== 'product_not_found') {
+        const returned = textValue(data.product?.code || data.code);
+        if (!data.product || !/^\d{8,14}$/.test(returned) || barcodeKey(returned) !== key) {
+          throw Error('The database returned an unexpected barcode. Check the number or try again.');
+        }
+        entry = {product:safeProduct(data.product, returned), expires:Date.now()+300000};
+        recentBarcodes.delete(key);
+        recentBarcodes.set(key, entry);
+        if (recentBarcodes.size > 40) recentBarcodes.delete(recentBarcodes.keys().next().value);
+      } else {
+        entry = null;
+      }
+    }
+    if (entry) {
+      result.append(productCard(entry.product, true));
+      updateSaveButtons();
+      $('productStatus').textContent = 'Product found in Open Food Facts. Check the current package for details.';
+    } else {
+      $('productStatus').textContent = 'Open Food Facts has no entry for ' + code + '. Check the digits, search by name, or save it manually.';
+      const expanded = expandUpce(code);
+      if (expanded) {
+        const button = el('button', {type:'button'}, 'Look up as UPC-E (' + expanded + ')');
+        button.addEventListener('click', () => lookupBarcode(expanded));
+        result.append(button);
+      }
+      const manual = el('button', {type:'button'}, 'Use this barcode in the manual form');
+      manual.addEventListener('click', () => {
+        $('manualCode').value = code;
+        $('manualName').focus();
+      });
+      result.append(manual);
+    }
+  } catch (error) {
+    if (barcodeRequest !== controller) return;
+    $('productStatus').textContent = error.name === 'AbortError' ? 'The lookup timed out. Try again or save manually.'
+      : error instanceof TypeError || error instanceof SyntaxError
+        ? 'Could not read Open Food Facts. Check your connection or save manually.'
+        : error.message;
+  } finally {
+    if (barcodeRequest === controller) {
+      barcodeRequest = null;
+      $('barcodeSearch').disabled = false;
+    }
+  }
+}
+
+function lookupText() {
+  const query = textValue($('productText').value);
+  const root = $('productMatches');
+  root.replaceChildren();
+  if (query.length < 2) {
+    $('productTextStatus').textContent = 'Enter at least two characters.';
+    return;
+  }
+  const params = new URLSearchParams({q:query, langs:'en'});
+  root.append(outbound('https://search.openfoodfacts.org/off-test?' + params, 'See results on Open Food Facts'));
+  $('productTextStatus').textContent = 'Open the results, then paste a product link above to bring its details into Values Compass.';
+}
+
+function saveManualProduct() {
+  const name = textValue($('manualName').value);
+  const feedback = $('manualStatus');
+  if (!name) {
+    feedback.textContent = 'Enter a product name.';
+    return;
+  }
+  let code = '';
+  try {
+    if (textValue($('manualCode').value)) code = cleanBarcode($('manualCode').value);
+  } catch (error) {
+    feedback.textContent = error.message;
+    return;
+  }
+  if (code && findSavedProduct(barcodeKey(code))) {
+    feedback.textContent = 'This barcode is already saved.';
+    return;
+  }
+  const product = {
+    code:code || 'manual-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+    name, brand:textValue($('manualBrand').value) || 'Brand not supplied',
+    quantity:textValue($('manualNotes').value), image:null, source:'Manual entry — unverified',
+    savedAt:new Date().toISOString(), manual:true, barcode:code
+  };
+  if (storeProducts([...state.savedProducts, product])) {
+    feedback.textContent = 'Saved on this device. Ownership remains unverified.';
+    $('manualForm').reset();
+  } else {
+    feedback.textContent = 'Could not save to this browser.';
+  }
+}
+
+const SCAN_FORMATS = ['ean_13','ean_8','upc_a','upc_e'];
+
+function stopScanner(message) {
+  const session = scanSession;
+  if (!session) return;
+  scanSession = null;
+  clearTimeout(session.timeout);
+  clearTimeout(session.poll);
+  session.controls?.stop();
+  session.stream?.getTracks().forEach(track => track.stop());
+  $('scanVideo').pause();
+  $('scanVideo').srcObject = null;
+  $('scanner').hidden = true;
+  $('scanStart').disabled = false;
+  $('scanStatus').textContent = message || '';
+}
+
+function loadScannerLibrary() {
+  if (!scannerLibrary) {
+    scannerLibrary = new Promise((resolve, reject) => {
+      const script = el('script', {
+        src:'https://cdn.jsdelivr.net/npm/@zxing/browser@0.1.5/umd/zxing-browser.min.js',
+        integrity:'sha384-ylLhng89kD62+PVK1cjm4rAYg69zDlGrbbSfAE2Eb8Xqf8RoAQCMcRoUXZh7pAPC',
+        crossorigin:'anonymous',
+        referrerpolicy:'no-referrer'
+      });
+      const fail = () => {
+        clearTimeout(timer);
+        script.remove();
+        reject(Error('Could not load the barcode reader.'));
+      };
+      const timer = setTimeout(fail, 8000);
+      script.addEventListener('error', fail, {once:true});
+      script.addEventListener('load', () => {
+        clearTimeout(timer);
+        if (window.ZXingBrowser?.BrowserMultiFormatReader) resolve(window.ZXingBrowser);
+        else fail();
+      }, {once:true});
+      document.head.append(script);
+    }).catch(error => {
+      scannerLibrary = null;
+      throw error;
+    });
+  }
+  return scannerLibrary;
+}
+
+function scannedBarcode(session, raw, format) {
+  if (scanSession !== session || !SCAN_FORMATS.includes(format)) return false;
+  const code = format === 'upc_e' ? expandUpce(raw) : raw;
+  const length = {ean_8:8, ean_13:13, upc_a:12, upc_e:12}[format];
+  if (!/^\d+$/.test(code) || code.length !== length || !hasCheckDigit(code)) return false;
+  stopScanner('Scanned ' + raw + (raw === code ? '.' : ' (UPC-A ' + code + ').'));
+  $('barcodeInput').value = code;
+  lookupBarcode(code);
+  return true;
+}
+
+async function scanWithZxing(session) {
+  if (scanSession !== session) return;
+  $('scanStatus').textContent = 'Loading the barcode reader…';
+  const zxing = await loadScannerLibrary();
+  if (scanSession !== session) return;
+  $('scanStatus').textContent = 'Point the camera at a UPC or EAN barcode.';
+  const reader = new zxing.BrowserMultiFormatReader();
+  reader.possibleFormats = SCAN_FORMATS.map(format => zxing.BarcodeFormat[format.toUpperCase()]);
+  const controls = await reader.decodeFromVideoElement($('scanVideo'), result => {
+    if (result) scannedBarcode(session, result.getText(), zxing.BarcodeFormat[result.getBarcodeFormat()]?.toLowerCase());
+  });
+  if (scanSession === session) session.controls = controls;
+  else controls.stop();
+}
+
+async function scanVideo(session) {
+  try {
+    const detector = window.BarcodeDetector;
+    if (detector) {
+      try {
+        const formats = await detector.getSupportedFormats();
+        if (scanSession !== session) return;
+        if (SCAN_FORMATS.every(format => formats.includes(format))) {
+          const reader = new detector({formats:SCAN_FORMATS});
+          $('scanStatus').textContent = 'Point the camera at a UPC or EAN barcode.';
+          const poll = async () => {
+            if (scanSession !== session) return;
+            try {
+              if ($('scanVideo').readyState >= 2) {
+                const codes = await reader.detect($('scanVideo'));
+                if (codes.some(({rawValue, format}) => scannedBarcode(session, rawValue, format))) return;
+              }
+              if (scanSession === session) session.poll = setTimeout(poll, 140);
+            } catch {
+              scanWithZxing(session).catch(() => {
+                if (scanSession === session) stopScanner('Barcode scanning is unavailable. Type the barcode instead.');
+              });
+            }
+          };
+          poll();
+          return;
+        }
+      } catch {
+        // If the native decoder cannot initialize, use the in-browser decoder below.
+      }
+    }
+    await scanWithZxing(session);
+  } catch {
+    if (scanSession === session) stopScanner('Barcode scanning is unavailable. Type the barcode instead.');
+  }
+}
+
+async function startScanner() {
+  if (scanSession) return;
+  if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
+    $('scanStatus').textContent = 'Camera access needs HTTPS and a supported browser. Type the barcode instead.';
+    $('barcodeInput').focus();
+    return;
+  }
+  const session = {};
+  scanSession = session;
+  $('scanner').hidden = false;
+  $('scanStart').disabled = true;
+  $('scanStatus').textContent = 'Waiting for camera permission…';
+  session.timeout = setTimeout(() => {
+    stopScanner('Camera scan timed out. Try again or type the barcode.');
+  }, 40000);
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio:false, video:{facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720}}
+    });
+    if (scanSession !== session) {
+      stream.getTracks().forEach(track => track.stop());
+      return;
+    }
+    session.stream = stream;
+    for (const track of stream.getVideoTracks()) {
+      track.addEventListener('ended', () => {
+        if (scanSession === session) stopScanner('The camera disconnected. Try again or type the barcode.');
+      }, {once:true});
+    }
+    const video = $('scanVideo');
+    video.srcObject = stream;
+    await video.play();
+    if (scanSession === session) await scanVideo(session);
+  } catch (error) {
+    if (scanSession !== session) return;
+    const reason = error.name === 'NotAllowedError' ? 'Camera permission was denied.'
+      : error.name === 'NotFoundError' ? 'No camera was found.' : 'The camera could not start.';
+    stopScanner(reason + ' Type the barcode instead.');
+    $('barcodeInput').focus();
+  }
+}
+
+function backupProducts(products) {
+  if (products === undefined) return [];
+  if (!Array.isArray(products) || products.some(product =>
+    !product || typeof product.code !== 'string' || typeof product.name !== 'string' ||
+    ['brand','barcode','quantity','source','savedAt'].some(key =>
+      product[key] !== undefined && typeof product[key] !== 'string') ||
+    (product.details !== undefined && (!product.details || typeof product.details !== 'object' ||
+      ['labels','allergens','traces'].some(key => !Array.isArray(product.details[key]))))
+  )) throw Error('Invalid saved products');
+  return products;
+}
+
+try {
+  state.savedProducts = backupProducts(state.savedProducts);
+} catch {
+  state.savedProducts = [];
+}
+renderFilterChoices('dietFilters', DIET_LABELS);
+renderFilterChoices('allergenFilters', ALLERGENS);
+$('productFilters').addEventListener('input', renderSavedProducts);
+$('clearProductFilters').addEventListener('click', () => {
+  $('productFilters').querySelectorAll('input[type=checkbox]').forEach(input => input.checked = false);
+  $('madeInFilter').value = '';
+  $('ingredientFilter').value = '';
+  $('productSort').value = 'saved';
+  renderSavedProducts();
+});
+$('barcodeForm').addEventListener('submit', event => {
+  event.preventDefault();
+  lookupBarcode();
+});
+$('barcodeInput').addEventListener('input', () => {
+  clearBarcodeLookup();
+  $('productStatus').textContent = 'Select Look up product to search for this barcode.';
+});
+$('barcodeExample').addEventListener('click', () => {
+  stopScanner();
+  $('barcodeInput').value = '3017620422003';
+  lookupBarcode();
+});
+$('scanStart').addEventListener('click', startScanner);
+$('scanStop').addEventListener('click', () => {
+  stopScanner('Camera stopped. You can type the barcode.');
+  $('barcodeInput').focus();
+});
+window.addEventListener('pagehide', () => stopScanner());
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) stopScanner('Camera paused. Start a new scan or type the barcode.');
+});
+$('productTextForm').addEventListener('submit', event => {
+  event.preventDefault();
+  lookupText();
+});
+$('productText').addEventListener('input', () => {
+  $('productTextStatus').textContent = '';
+  $('productMatches').replaceChildren();
+});
+$('manualForm').addEventListener('submit', event => {
+  event.preventDefault();
+  saveManualProduct();
+});
 renderSavedProducts();
+
 </script></body></html>
